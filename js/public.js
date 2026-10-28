@@ -2,8 +2,7 @@
    NAGI CUSTOM | PUBLIC API
 ========================================= */
 
-// admin.js と同じApps Scriptの /exec URLを設定
-const API_URL = "ここにApps ScriptのWebアプリURLを貼り付け";
+const API_URL = "https://script.google.com/macros/s/AKfycbxwnDGrUDOGGfrKLa17GM59nR4z3Ajpi3aGJniQ0rMYxzTJo3MqVIQMGr2tquu4usJZ/exec";
 
 const NC_PUBLIC = {
   async get(action, params = {}) {
