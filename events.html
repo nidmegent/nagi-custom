@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="NAGI CUSTOMの大会一覧。VALORANTを中心としたeスポーツ大会情報を掲載。">
+  <title>大会一覧 | NAGI CUSTOM</title>
+  <link rel="stylesheet" href="css/public.css">
+  <script src="js/public.js" defer></script>
+</head>
+<body>
+  <header class="nc-header">
+    <nav class="nc-nav">
+      <a class="nc-brand" href="index.html">
+        <span class="nc-brand-mark">N</span>
+        <span>NAGI CUSTOM<small>ESPORTS TOURNAMENT</small></span>
+      </a>
+      <div class="nc-links">
+        <a href="index.html">TOP</a>
+        <a href="events.html" aria-current="page">TOURNAMENTS</a>
+        <a href="archive.html">ARCHIVE</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="nc-main">
+    <section class="nc-hero">
+      <p class="nc-eyebrow">NAGI CUSTOM / TOURNAMENTS</p>
+      <h1 class="nc-title">TOURNAMENT<br><span>LINEUP.</span></h1>
+      <p class="nc-lead">
+        NAGI CUSTOMが開催する大会情報を掲載。
+        気になる大会をチェックして、詳細や参加方法を確認しよう。
+      </p>
+    </section>
+
+    <section class="nc-section">
+      <div class="nc-section-head">
+        <div>
+          <p class="nc-eyebrow">ALL EVENTS</p>
+          <h2>大会一覧</h2>
+          <p>管理画面に登録された公開中の大会を表示します。</p>
+        </div>
+        <strong id="event-count">LOADING...</strong>
+      </div>
+
+      <div class="nc-toolbar">
+        <input
+          id="event-search"
+          class="nc-input"
+          type="search"
+          placeholder="大会名・ゲーム名で検索"
+          aria-label="大会を検索"
+        >
+        <select id="game-filter" class="nc-select" aria-label="ゲームで絞り込む">
+          <option value="">すべてのゲーム</option>
+        </select>
+      </div>
+
+      <div id="event-list" class="nc-grid" aria-live="polite">
+        <div class="nc-loading">大会情報を読み込み中...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nc-footer">
+    <strong>NAGI CUSTOM</strong>
+    <p>© NAGI CUSTOM / Nidmegent</p>
+  </footer>
+</body>
+</html>
