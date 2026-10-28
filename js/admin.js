@@ -706,8 +706,8 @@ async function handleCreateAdmin(event) {
   const password = $("newAdminPassword").value;
   const role = $("newAdminRole").value;
 
-  if (password.length < 12) {
-    showGlobalMessage("パスワードは12文字以上にしてください。", "error");
+  if (password.length < 8) {
+    showGlobalMessage("パスワードは8文字以上にしてください。", "error");
     return;
   }
 
