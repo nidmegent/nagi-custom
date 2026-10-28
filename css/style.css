@@ -2085,3 +2085,67 @@ a:focus-visible {
     transform: none;
   }
 }
+
+/* ========================================
+   NAGI CUSTOM LOGO
+======================================== */
+
+/* ヘッダー・フッターのロゴ */
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-icon .brand-logo {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* ローディング画面のロゴ */
+.loader-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-mark .brand-logo {
+  display: block;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+/* Aboutセクションのロゴ */
+.about-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-symbol .about-logo {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* スマートフォン */
+@media (max-width: 768px) {
+  .brand-icon .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .loader-mark .brand-logo {
+    width: 76px;
+    height: 76px;
+  }
+
+  .about-symbol .about-logo {
+    max-width: 140px;
+  }
+}
