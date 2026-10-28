@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="NAGI CUSTOMの過去大会・大会結果アーカイブ。">
+  <title>過去大会・大会結果 | NAGI CUSTOM</title>
+  <link rel="stylesheet" href="css/public.css">
+  <script src="js/public.js" defer></script>
+</head>
+<body>
+  <header class="nc-header">
+    <nav class="nc-nav">
+      <a class="nc-brand" href="index.html">
+        <span class="nc-brand-mark">N</span>
+        <span>NAGI CUSTOM<small>ESPORTS TOURNAMENT</small></span>
+      </a>
+      <div class="nc-links">
+        <a href="index.html">TOP</a>
+        <a href="events.html">TOURNAMENTS</a>
+        <a href="archive.html" aria-current="page">ARCHIVE</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="nc-main">
+    <section class="nc-hero">
+      <p class="nc-eyebrow">NAGI CUSTOM / ARCHIVE</p>
+      <h1 class="nc-title">PAST EVENTS<br><span>& RESULTS.</span></h1>
+      <p class="nc-lead">
+        これまでに開催した大会と、その大会結果を掲載。
+        NAGI CUSTOMの大会の記録をここからチェック！
+      </p>
+    </section>
+
+    <section class="nc-section">
+      <div class="nc-section-head">
+        <div>
+          <p class="nc-eyebrow">TOURNAMENT HISTORY</p>
+          <h2>過去大会</h2>
+        </div>
+      </div>
+
+      <div id="archive-list" class="nc-grid" aria-live="polite">
+        <div class="nc-loading">過去大会を読み込み中...</div>
+      </div>
+    </section>
+
+    <section class="nc-section">
+      <div class="nc-section-head">
+        <div>
+          <p class="nc-eyebrow">FINAL STANDINGS</p>
+          <h2>大会結果</h2>
+          <p>管理画面から登録された順位・チーム名・選手名を表示します。</p>
+        </div>
+      </div>
+
+      <div id="archive-results" aria-live="polite">
+        <div class="nc-loading">大会結果を読み込み中...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nc-footer">
+    <strong>NAGI CUSTOM</strong>
+    <p>© NAGI CUSTOM / Nidmegent</p>
+  </footer>
+</body>
+</html>
