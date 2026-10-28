@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ADMIN PANEL | NAGI CUSTOM</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="background-grid"></div>
+
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">N</span>
+      <span>NAGI <b>CUSTOM</b><small>ADMINISTRATION SYSTEM</small></span>
+    </a>
+    <a href="index.html" class="back-link">← 公開サイトへ</a>
+  </header>
+
+  <main>
+    <!-- ログイン -->
+    <section id="loginView" class="login-wrap">
+      <div class="login-card">
+        <div class="eyebrow"><span class="live-dot"></span> RESTRICTED ACCESS</div>
+        <h1>ADMIN<span>PANEL</span></h1>
+        <p class="muted">NAGI CUSTOM 管理システム</p>
+
+        <form id="loginForm">
+          <label for="loginId">管理者ID</label>
+          <input id="loginId" name="loginId" type="text"
+                 autocomplete="username" required maxlength="100"
+                 placeholder="管理者IDを入力">
+
+          <label for="loginPassword">パスワード</label>
+          <input id="loginPassword" name="loginPassword" type="password"
+                 autocomplete="current-password" required maxlength="200"
+                 placeholder="パスワードを入力">
+
+          <button id="loginButton" class="button button-primary full-width" type="submit">
+            SECURE LOGIN <span>→</span>
+          </button>
+          <p id="loginMessage" class="message" role="status"></p>
+        </form>
+
+        <div class="security-note">
+          <span>◆</span>
+          管理者権限の確認はサーバー側で行われます。
+        </div>
+      </div>
+    </section>
+
+    <!-- ダッシュボード -->
+    <section id="dashboardView" class="dashboard hidden">
+      <div class="dashboard-heading">
+        <div>
+          <div class="eyebrow">CONTROL CENTER / 01</div>
+          <h1>管理<span>ダッシュボード</span></h1>
+          <p class="muted">大会情報と大会結果を管理します。</p>
+        </div>
+        <button id="logoutButton" class="button button-outline" type="button">ログアウト ↗</button>
+      </div>
+
+      <div class="account-strip">
+        <div>
+          <span class="muted small">ログイン中</span>
+          <strong id="currentAdmin">管理者</strong>
+        </div>
+        <span id="currentRole" class="role-badge">権限確認中</span>
+      </div>
+
+      <div id="globalMessage" class="message global-message" role="status"></div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <span>登録大会数</span>
+          <strong id="statEvents">—</strong>
+          <small>REGISTERED EVENTS</small>
+        </article>
+        <article class="stat-card">
+          <span>大会結果</span>
+          <strong id="statResults">—</strong>
+          <small>RESULT RECORDS</small>
+        </article>
+      </div>
+
+      <nav class="tabs" aria-label="管理メニュー">
+        <button class="tab active" data-tab="events" type="button">大会管理</button>
+        <button class="tab" data-tab="results" type="button">大会結果</button>
+        <button id="adminsTabButton" class="tab super-admin-only hidden"
+                data-tab="admins" type="button">管理者管理</button>
+        <button class="tab" data-tab="password" type="button">パスワード変更</button>
+      </nav>
+
+      <!-- 大会管理 -->
+      <section id="tab-events" class="panel">
+        <div class="panel-heading">
+          <div>
+            <div class="eyebrow">EVENT DATABASE</div>
+            <h2>大会管理</h2>
+          </div>
+          <button id="newEventButton" class="button button-primary" type="button">＋ 大会を追加</button>
+        </div>
+
+        <form id="eventForm" class="editor-form hidden">
+          <div class="form-title">
+            <h3 id="eventFormTitle">大会を登録</h3>
+            <button id="cancelEventButton" class="icon-button" type="button" aria-label="閉じる">×</button>
+          </div>
+          <input id="eventId" type="hidden">
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="eventName">大会名 *</label>
+              <input id="eventName" required maxlength="200" placeholder="例：NAGI CUSTOM #1">
+            </div>
+            <div class="field">
+              <label for="eventGame">ゲームタイトル *</label>
+              <input id="eventGame" required maxlength="100" placeholder="例：VALORANT">
+            </div>
+            <div class="field">
+              <label for="eventThumbnail">サムネイル画像URL</label>
+              <input id="eventThumbnail" type="url" maxlength="1000" placeholder="https://...">
+            </div>
+            <div class="field">
+              <label for="eventApplicationUrl">応募URL</label>
+              <input id="eventApplicationUrl" type="url" maxlength="1000" placeholder="https://...">
+            </div>
+            <div class="field">
+              <label for="eventStart">大会開始日</label>
+              <input id="eventStart" type="date">
+            </div>
+            <div class="field">
+              <label for="eventEnd">大会終了日</label>
+              <input id="eventEnd" type="date">
+            </div>
+            <div class="field">
+              <label for="eventRegistrationStart">応募開始日</label>
+              <input id="eventRegistrationStart" type="date">
+            </div>
+            <div class="field">
+              <label for="eventRegistrationEnd">応募締切日</label>
+              <input id="eventRegistrationEnd" type="date">
+            </div>
+            <div class="field">
+              <label for="eventStatus">公開ステータス</label>
+              <select id="eventStatus">
+                <option value="draft">下書き</option>
+                <option value="upcoming">開催予定</option>
+                <option value="open">応募受付中</option>
+                <option value="ongoing">開催中</option>
+                <option value="completed">終了</option>
+              </select>
+            </div>
+            <div class="field field-checkbox">
+              <label><input id="eventFeatured" type="checkbox"> トップページで注目大会として表示</label>
+            </div>
+            <div class="field field-wide">
+              <label for="eventDescription">大会概要</label>
+              <textarea id="eventDescription" rows="5" maxlength="10000"
+                        placeholder="大会の目的、参加条件、開催概要など"></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="eventRules">大会ルール</label>
+              <textarea id="eventRules" rows="5" maxlength="15000"
+                        placeholder="大会ルール・注意事項など"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="cancelEventButtonBottom" class="button button-outline" type="button">キャンセル</button>
+            <button id="saveEventButton" class="button button-primary" type="submit">大会を保存</button>
+          </div>
+        </form>
+
+        <div class="list-toolbar">
+          <input id="eventSearch" type="search" placeholder="大会名・ゲーム名で検索">
+          <button id="reloadEventsButton" class="button button-outline" type="button">↻ 再読み込み</button>
+        </div>
+        <div id="eventsList" class="data-list">
+          <div class="empty-state">ログイン後に大会情報を読み込みます。</div>
+        </div>
+      </section>
+
+      <!-- 大会結果 -->
+      <section id="tab-results" class="panel hidden">
+        <div class="panel-heading">
+          <div>
+            <div class="eyebrow">TOURNAMENT ARCHIVE</div>
+            <h2>大会結果</h2>
+          </div>
+          <button id="newResultButton" class="button button-primary" type="button">＋ 結果を追加</button>
+        </div>
+
+        <form id="resultForm" class="editor-form hidden">
+          <div class="form-title">
+            <h3 id="resultFormTitle">大会結果を登録</h3>
+            <button id="cancelResultButton" class="icon-button" type="button" aria-label="閉じる">×</button>
+          </div>
+          <input id="resultId" type="hidden">
+
+          <div class="form-grid">
+            <div class="field field-wide">
+              <label for="resultEvent">対象大会 *</label>
+              <select id="resultEvent" required>
+                <option value="">大会を選択してください</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="resultRank">順位 *</label>
+              <input id="resultRank" required maxlength="50" placeholder="例：1位">
+            </div>
+            <div class="field">
+              <label for="resultTeam">チーム名</label>
+              <input id="resultTeam" maxlength="200">
+            </div>
+            <div class="field">
+              <label for="resultPlayer">プレイヤー名</label>
+              <input id="resultPlayer" maxlength="200">
+            </div>
+            <div class="field field-wide">
+              <label for="resultNotes">備考</label>
+              <textarea id="resultNotes" rows="3" maxlength="5000"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="cancelResultButtonBottom" class="button button-outline" type="button">キャンセル</button>
+            <button id="saveResultButton" class="button button-primary" type="submit">結果を保存</button>
+          </div>
+        </form>
+
+        <div id="resultsList" class="data-list">
+          <div class="empty-state">大会結果を読み込みます。</div>
+        </div>
+      </section>
+
+      <!-- 管理者管理：最高管理者のみ -->
+      <section id="tab-admins" class="panel hidden">
+        <div class="panel-heading">
+          <div>
+            <div class="eyebrow">ACCESS CONTROL</div>
+            <h2>管理者管理</h2>
+            <p class="muted">最高管理者専用の機能です。</p>
+          </div>
+        </div>
+
+        <form id="adminForm" class="editor-form">
+          <h3>管理者アカウントを追加</h3>
+          <div class="form-grid">
+            <div class="field">
+              <label for="newAdminId">新しい管理者ID *</label>
+              <input id="newAdminId" required maxlength="100" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="newAdminPassword">初期パスワード *</label>
+              <input id="newAdminPassword" type="password" required minlength="12"
+                     maxlength="200" autocomplete="new-password">
+            </div>
+            <div class="field field-wide">
+              <label for="newAdminRole">権限</label>
+              <select id="newAdminRole">
+                <option value="大会管理者">大会管理者（大会・結果の管理）</option>
+                <option value="最高管理者">最高管理者（全機能）</option>
+              </select>
+            </div>
+          </div>
+          <button class="button button-primary" type="submit" id="createAdminButton">管理者を追加</button>
+        </form>
+
+        <div class="panel-subheading">
+          <h3>登録済み管理者</h3>
+          <button id="reloadAdminsButton" class="button button-outline" type="button">↻ 更新</button>
+        </div>
+        <div id="adminsList" class="data-list">
+          <div class="empty-state">管理者一覧を読み込みます。</div>
+        </div>
+      </section>
+
+      <!-- パスワード変更 -->
+      <section id="tab-password" class="panel hidden">
+        <div class="panel-heading">
+          <div>
+            <div class="eyebrow">ACCOUNT SECURITY</div>
+            <h2>パスワード変更</h2>
+          </div>
+        </div>
+        <form id="passwordForm" class="editor-form compact-form">
+          <div class="field">
+            <label for="oldPassword">現在のパスワード</label>
+            <input id="oldPassword" type="password" required autocomplete="current-password">
+          </div>
+          <div class="field">
+            <label for="newPassword">新しいパスワード（12文字以上推奨）</label>
+            <input id="newPassword" type="password" required minlength="12"
+                   maxlength="200" autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label for="confirmPassword">新しいパスワード（確認）</label>
+            <input id="confirmPassword" type="password" required minlength="12"
+                   maxlength="200" autocomplete="new-password">
+          </div>
+          <button id="changePasswordButton" class="button button-primary" type="submit">パスワードを変更</button>
+        </form>
+      </section>
+
+      <footer class="dashboard-footer">
+        NAGI CUSTOM ADMIN SYSTEM <span>•</span> SECURE OPERATIONS
+      </footer>
+    </section>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
